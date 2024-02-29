@@ -5,6 +5,18 @@ body{
     font-family: sans-serif,arial,Helvetica;
 }
 
+.error-message { 
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 20px;
+    margin: auto;
+    width: fit-content;
+    height: 20px;
+    margin-top: 50px; 
+}
+
 a,
 a:hover,
 a:focus{
