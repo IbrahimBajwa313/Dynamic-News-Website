@@ -554,3 +554,65 @@ i.fa{
 /* ===================== */
 /* FrontEnd CSS END */
 /* ===================== */
+/* Add this CSS at the end of your existing CSS file */
+
+/* Delete Confirmation Styling */
+#main-content {
+    background-color: #fff;
+    padding: 80px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.13);
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-bottom: 30px ;    
+    margin-top: 30px ;
+    max-width: 600px; /* Adjust the width as needed */
+    max-height: 500px !important; /* Adjust the width as needed */
+}
+
+#main-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.confirmation-info {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin:auto;
+}
+
+.confirmation-info p {
+    margin: 5px 0;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.confirmation-buttons input[type="submit"],
+.confirmation-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.confirmation-buttons input[type="submit"] {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.confirmation-buttons button {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.confirmation-buttons input[type="submit"]:hover,
+.confirmation-buttons button:hover {
+    background-color: #c82333;
+}
+
+.confirmation-buttons button:hover {
+    background-color: #5a6268;
+}

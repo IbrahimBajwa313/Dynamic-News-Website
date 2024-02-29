@@ -7,25 +7,25 @@ if (isset($_POST['save'])) {
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $lname = mysqli_real_escape_string($conn, $_POST['lname']);
     $user = mysqli_real_escape_string($conn, $_POST['user']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $role = mysqli_real_escape_string($conn, sha1($_POST['role']));
+    $password = mysqli_real_escape_string($conn, sha1($_POST['password']));
+    $role = mysqli_real_escape_string($conn, $_POST['role']);
 
-    // $sql = "SELECT username FROM user WHERE username = '{$user}'";
+    $sql = "SELECT username FROM user WHERE username = '{$user}'";
 
-    // // Check for the username to be unique
-    // $result = mysqli_query($conn, $sql) or die("Query Failed");
+    // Check for the username to be unique
+    $result = mysqli_query($conn, $sql) or die("Query Failed");
 
-    // if (mysqli_num_rows($result) > 0) {
-    //     echo "<p class='error-message'>This username already exists. </p>";
-    // } else {
+    if (mysqli_num_rows($result) > 0) {
+        echo "<p class='error-message'>This username already exists. </p>";
+    } else {
         $sql1 = "INSERT INTO user (first_name, last_name, username, password, role) VALUES ('$fname', '$lname', '$user', '$password', '$role')";
         $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
         if ($result1) {
-            header("Location: http://localhost/news-website/admin/users.php");
+            header("Location: {$hostname}/admin/users.php");
             exit;
         }
     }
-// }
+}
 
 ?>
 <div id="admin-content">
