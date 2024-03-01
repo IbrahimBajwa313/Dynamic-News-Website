@@ -1,3 +1,11 @@
+<?php
+include "config.php";
+if (!isset($_SESSION['username'])){
+    header("location: http://localhost/news-website/admin/");
+}
+?>  
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
