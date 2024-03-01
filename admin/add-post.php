@@ -1,4 +1,8 @@
-<?php include "header.php"; ?>
+<?php include "header.php";
+if( $_SESSION['user_role'] != 1){
+    header("location: http://localhost/news-website/admin/post.php");
+}
+ ?>
   <div id="admin-content">
       <div class="container">
          <div class="row">

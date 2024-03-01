@@ -1,7 +1,9 @@
 <?php 
 include "header.php";
 include "config.php"; 
-
+if( $_SESSION['user_role'] != 1){
+    header("location: http://localhost/news-website/admin/post.php");
+}
  
     $UserID = $_GET['id']; 
 

@@ -1,3 +1,12 @@
+<?php  include "config.php" ; 
+ 
+session_start();  
+
+if (isset($_SESSION['username'])){
+    header("location: http://localhost/news-website/admin/post.php");
+}
+?>
+
 <!doctype html>
 <html>
    <head>
@@ -36,16 +45,15 @@
                             include 'config.php';
                             $username = mysqli_real_escape_string($conn, $_POST['username']);
                             $password = sha1($_POST['password']);
-
-                            $sql = "SELECT username, password, user_id FROM user WHERE username='$username' AND password='$password'";
+                            $sql = "SELECT username, password, user_id , role FROM user WHERE username='$username' AND password='$password'";
                             $result = mysqli_query($conn, $sql) or die("Query Failed");
- 
-                            if(mysqli_num_rows($result) > 0){
+                            
+                            if(mysqli_num_rows($result) > 0){ 
                                 while($row =mysqli_fetch_assoc($result)){
                                     session_start();
                                     $_SESSION['username'] = $row['username'];
                                     $_SESSION['password'] = $row['password'];
-                                    $_SESSION['user_role'] = $row['user_role'];
+                                    $_SESSION['user_role'] = $row['role'];
 
                                 header("location: {$hostname}/admin/users.php");
 

@@ -1,4 +1,7 @@
 <?php include "header.php";
+if( $_SESSION['user_role'] != 1){
+    header("location: http://localhost/news-website/admin/post.php");
+}
 
 if (isset($_POST['save'])) {
 
