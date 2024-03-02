@@ -54,6 +54,7 @@ if (isset($_SESSION['username'])){
                                     $_SESSION['username'] = $row['username'];
                                     $_SESSION['password'] = $row['password'];
                                     $_SESSION['user_role'] = $row['role'];
+                                    $_SESSION['user_id'] = $row['user_id'];
 
                                 header("location: {$hostname}/admin/users.php");
 
