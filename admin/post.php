@@ -19,86 +19,83 @@
                           <th>Edit</th>
                           <th>Delete</th>
                       </thead>
+                      
                       <tbody>
+                      <?php 
+                            $limit = 7;
+                            
+                            if(isset($_GET['page'])){
+                                $page = $_GET['page'];
+                            } else {
+                                $page = 2 ;
+                            }
+                            $offset = ($page-1)*$limit; //LIMIT {$offset},{$limit}
+
+                             
+                            if( $_SESSION['user_role'] == 1){
+                                $sql = "SELECT * FROM post
+                                inner JOIN category ON post.category = category.category_id
+                                inner JOIN user ON post.author = user.user_id
+                                ORDER BY post.post_id DESC  ";                           
+                             }
+                              elseif( $_SESSION['user_role'] != 1)
+                               {
+                                $sql = "SELECT * FROM post
+                                INNER JOIN category ON post.category = category.category_id
+                                INNER JOIN user ON post.author = user.user_id
+                                WHERE post.author = {$_SESSION['user_id']}
+                                ORDER BY post.post_id DESC";
+
+                             }
+
+                            
+ 
+                            $result = mysqli_query($conn,$sql) or die("Query Failed");
+                    
+                            if(mysqli_num_rows($result) > 0){
+                                while( $row = mysqli_fetch_assoc($result)){
+                      ?>
                           <tr>
-                              <td class='id'>1</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='id'><?php echo $row['post_id']; ?></td>
+                              <td><?php echo $row['title']; ?></td>
+                              <td><?php echo $row['category_name']; ?></td>
+                              <td><?php echo $row['post_date']; ?></td>
+                              <td><?php echo $row['username']; ?></td>
+                              <td class='edit'><a href='update-page.php?id=<?php $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
+                              <td class='delete'><a href='delete-post.php?id=<?php $row['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
-                          <tr>
-                              <td class='id'>2</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>3</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>4</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>5</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>6</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>7</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <tr>
-                              <td class='id'>8</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
+                          <?php }} ?>
                       </tbody>
                   </table>
-                  <ul class='pagination admin-pagination'>
-                      <li class="active"><a>1</a></li>
-                      <li><a>2</a></li>
-                      <li><a>3</a></li>
-                  </ul>
+                  <?php
+                        $sql1 = 'SELECT * FROM post';
+                        $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
+                        
+                        if(mysqli_num_rows($result1) > 0) {
+                            $total_Users = mysqli_num_rows($result1);
+                            
+                            $total_Page = ceil($total_Users / $limit);
+                            echo '<ul class="pagination admin-pagination">';
+                            if ($page > 1) {
+                            echo '<li><a href="post.php?page='.($page - 1).'">Prev</a></li>';
+                            }
+                            for($i = 1; $i <= $total_Page; $i++) {
+                                if($i == $page){
+                                    $active = "active";
+                                } else {
+                                    $active = "";
+                                }
+
+                                echo '<li class="'.$active.'"><a  href="post.php?page='.$i.'">'. $i . '</a></li>';
+                            }
+                            if ($page < $total_Page) {
+                                echo '<li><a href="post.php?page='.($page + 1).'">Next</a></li>';
+                            }
+                            
+                            echo '</ul>';
+                        }
+                    ?>
+
               </div>
           </div>
       </div>

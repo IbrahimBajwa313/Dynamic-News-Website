@@ -36,7 +36,8 @@ if(isset($_FILES['fileToUpload'])){
 $title = mysqli_real_escape_string($conn, $_POST['post_title']);
 $description = mysqli_real_escape_string($conn, $_POST['postdesc']);
 $category = mysqli_real_escape_string($conn, $_POST['category']);
-$date = date("d m, y");
+$date = date("d - m - y");
+
 session_start();
 $author = $_SESSION['user_id'];
 
@@ -48,7 +49,6 @@ $sql .= "; UPDATE category SET post = post + 1 WHERE category_id = $category";
 
 if(mysqli_multi_query($conn,$sql)){
     header("Location: {$hostname}/admin/post.php");
-
 } else {
     echo "Query Failed";
 }

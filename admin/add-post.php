@@ -1,7 +1,5 @@
 <?php include "header.php";
-if( $_SESSION['user_role'] != 1){
-    header("location: http://localhost/news-website/admin/post.php");
-}
+ 
  ?>
   <div id="admin-content">
       <div class="container">
@@ -23,7 +21,7 @@ if( $_SESSION['user_role'] != 1){
                       <div class="form-group">
                           <label for="exampleInputPassword1">Category</label>
                           <select name="category" class="form-control">
-                              <option disabled> Select Category</option>
+                              <!-- <option disabled> Select Category</option> -->
                               <?php
                                 include 'config.php';
                                 
