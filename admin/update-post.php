@@ -6,39 +6,79 @@
         <h1 class="admin-heading">Update Post</h1>
     </div>
     <div class="col-md-offset-3 col-md-6">
+        <?php
+        include "config.php";
+        $user_id = $_GET['id'];
+        
+        // Query to take the Data of that specific user 
+        $sql = "SELECT p.post_id, p.title, p.description, c.category_name ,p.post_img, p.category
+        FROM post p inner JOIN category c ON p.category = c.category_id
+        inner JOIN user u ON p.author = u.user_id
+        WHERE p.post_id = {$user_id}";
+
+        $result = mysqli_query($conn, $sql) or die("Query Failed");
+                                    
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+        ?>
         <!-- Form for show edit-->
-        <form action="" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="save_update_post.php" method="POST" enctype="multipart/form-data" autocomplete="off">
             <div class="form-group">
                 <input type="hidden" name="post_id"  class="form-control" value="1" placeholder="">
             </div>
+            <!-- Title -->
             <div class="form-group">
                 <label for="exampleInputTile">Title</label>
-                <input type="text" name="post_title"  class="form-control" id="exampleInputUsername" value="Lorem ipsum dolor sit amet">
+                <input type="text" name="post_title" class="form-control" id="exampleInputUsername" value="<?php echo $row['title']; ?>">
             </div>
+            <!-- Description -->
             <div class="form-group">
                 <label for="exampleInputPassword1"> Description</label>
                 <textarea name="postdesc" class="form-control"  required rows="5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                </textarea>
+                <?php echo $row['description']; ?> </textarea>
             </div>
+
+            <!-- Category -->
             <div class="form-group">
                 <label for="exampleInputCategory">Category</label>
                 <select class="form-control" name="category">
-                    <option value="">Html</option>
-                    <option value="">Css</option>
-                    <option value="">javascript</option>
-                    <option value="">Python</option>
+                <?php
+                                include 'config.php';
+                                                               
+                                $sql1 = "SELECT * FROM category";
+                                $result1 = mysqli_query($conn , $sql1) or die("Query Failed");
+                                
+                                if (mysqli_num_rows($result1)>0){
+                                    while ($row1 = mysqli_fetch_assoc($result1)) {
+                                    
+                                    if($row['category'] == $row1['category_id']){
+                                         $selected = "selected";
+                                    } else {
+                                         $selected = "";
+                                    }
+                                    echo "<option {$selected} value='{$row1['category_id']}'>{$row1['category_name']}</option>";
+                                }
+                            }
+                        ?>
                 </select>
             </div>
+
+            <!-- image -->
             <div class="form-group">
-                <label for="">Post image</label>
-                <input type="file" name="new-image">
-                <img  src="upload/post_1.jpg" height="150px">
+                <label for="">Post image</label><br>
+                <img  src="upload/<?php echo $row['post_img']; ?>" height="150px"> 
+                <input style=margin-top:8px type="file" name="new-image">
+                <!-- <label for="">Previous image</label> -->
                 <input type="hidden" name="old-image" value="">
             </div>
             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
         </form>
+
         <!-- Form End -->
+        <?php
+            }
+        }
+        ?>
       </div>
     </div>
   </div>

@@ -33,16 +33,20 @@
 
                              
                             if( $_SESSION['user_role'] == 1){
-                                $sql = "SELECT * FROM post
-                                inner JOIN category ON post.category = category.category_id
-                                inner JOIN user ON post.author = user.user_id
-                                ORDER BY post.post_id DESC  ";                           
+                                $sql = "SELECT p.post_id, p.title, p.description, 
+                                p.post_date, c.category_name, u.username
+                                FROM post p
+                                inner JOIN category c ON p.category = c.category_id
+                                inner JOIN user u ON p.author = u.user_id
+                                ORDER BY p.post_id DESC  ";                           
                              }
                               elseif( $_SESSION['user_role'] != 1)
                                {
-                                $sql = "SELECT * FROM post
-                                INNER JOIN category ON post.category = category.category_id
-                                INNER JOIN user ON post.author = user.user_id
+                                "SELECT p.post_id, p.title, p.description, 
+                                p.post_date, c.category_name, u.username
+                                FROM post p
+                                inner JOIN category c ON p.category = c.category_id
+                                inner JOIN user u ON p.author = u.user_id
                                 WHERE post.author = {$_SESSION['user_id']}
                                 ORDER BY post.post_id DESC";
 
@@ -61,8 +65,8 @@
                               <td><?php echo $row['category_name']; ?></td>
                               <td><?php echo $row['post_date']; ?></td>
                               <td><?php echo $row['username']; ?></td>
-                              <td class='edit'><a href='update-page.php?id=<?php $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php?id=<?php $row['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
+                              <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                           <?php }} ?>
                       </tbody>
