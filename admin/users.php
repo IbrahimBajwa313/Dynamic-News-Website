@@ -41,7 +41,7 @@ if( $_SESSION['user_role'] != "1"){
                     
                             if(mysqli_num_rows($result) > 0){
                                 while( $row = mysqli_fetch_assoc($result)){
-                                    session_start();
+                                     
                       ?>
                       <tbody>
                           <tr>
@@ -50,7 +50,7 @@ if( $_SESSION['user_role'] != "1"){
                               <td><?php echo $row['username'] ; ?></td>
                               <td><?php if ( $row['role'] == 1){ echo "admin";} else {echo "Normal user";}   ?></td>
                               <td class='edit'><a href='update-user.php?id=<?php echo $_SESSION['user_id'] ; ?>'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete_confirmation.php?id=<?php echo $row['user_id'] ; ?>'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='delete'><a href='delete_user.php?id=<?php echo $row['user_id'] ; ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                       
                       </tbody>

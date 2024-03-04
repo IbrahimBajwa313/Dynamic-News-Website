@@ -39,7 +39,7 @@ else if(isset($_GET["id"]) && is_numeric($_GET["id"])) { // Changed from "id" to
         <p><strong>Username:</strong> <?php echo $row['username']; ?></p>
     </div>
 
-    <form action="delete_confirmation.php?id=<?php echo $row['user_id'] ; ?>" method="post">
+    <form action="delete_user.php?id=<?php echo $row['user_id'] ; ?>" method="post">
         <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
         <div class="confirmation-buttons">
             <input type="submit" name="confirm_delete" value="Confirm Delete" class="btn btn-danger">
