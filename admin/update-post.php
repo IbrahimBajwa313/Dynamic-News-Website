@@ -24,7 +24,7 @@
         <!-- Form for show edit-->
         <form action="save_update_post.php" method="POST" enctype="multipart/form-data" autocomplete="off">
             <div class="form-group">
-                <input type="hidden" name="post_id"  class="form-control" value="1" placeholder="">
+                <input type="hidden" name="post_id"  class="form-control" value="<?php echo $row['post_id']; ?>" placeholder="">
             </div>
             <!-- Title -->
             <div class="form-group">
@@ -66,10 +66,11 @@
             <!-- image -->
             <div class="form-group">
                 <label for="">Post image</label><br>
-                <img  src="upload/<?php echo $row['post_img']; ?>" height="150px"> 
-                <input style=margin-top:8px type="file" name="new-image">
+                <img  src="upload/<?php echo $row['post_img']; ?>" height="150px"> <br>
+                <label style=margin-top:8px for="">Change image</label><br>
+                <input style=margin-top:8px type="file" name="new_image">
                 <!-- <label for="">Previous image</label> -->
-                <input type="hidden" name="old-image" value="">
+                <input type="hidden" name="old_image" value="">
             </div>
             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
         </form>
