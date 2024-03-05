@@ -6,8 +6,14 @@ if(isset($_POST["confirm_delete"])){
 
     $post_id = $_GET["id"];
     $category_id = $_GET['catid'];
-     
     
+    // To delete the specific image from the folder
+    $sql1 = "SELECT * FROM post WHERE post_id={$post_id};";
+    $result1 = mysqli_query($conn,$sql1) or die("Select Query Failed");
+    $row1 = mysqli_fetch_assoc($result1);
+    unlink("upload/".$row1['post_img']);
+
+    // To delete the specific record from the database
     $sql = "DELETE FROM post WHERE post_id={$post_id};"; // Corrected to separate the statements with a semicolon
     $sql .= "UPDATE category SET post = post - 1 WHERE category_id = {$category_id};"; // Concatenating the update statement 
     $result = mysqli_multi_query($conn, $sql) or die("Query unsuccessful");
