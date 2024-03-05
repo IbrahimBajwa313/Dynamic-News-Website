@@ -34,7 +34,7 @@
                              
                             if( $_SESSION['user_role'] == 1){
                                 $sql = "SELECT p.post_id, p.title, p.description, 
-                                p.post_date, c.category_name, u.username
+                                p.post_date, c.category_name, u.username, p.category
                                 FROM post p
                                 inner JOIN category c ON p.category = c.category_id
                                 inner JOIN user u ON p.author = u.user_id
@@ -42,7 +42,7 @@
                              }
                               elseif( $_SESSION['user_role'] != 1)
                                {
-                                "SELECT p.post_id, p.title, p.description, 
+                                "SELECT p.post_id, p.title, p.description,  p.category,
                                 p.post_date, c.category_name, u.username
                                 FROM post p
                                 inner JOIN category c ON p.category = c.category_id
@@ -66,7 +66,7 @@
                               <td><?php echo $row['post_date']; ?></td>
                               <td><?php echo $row['username']; ?></td>
                               <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                              <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id'] ?>&catid=<?php echo $row['category'] ?>'><i class='fa fa-trash-o'></i></a></td>
                           </tr>
                           <?php }} ?>
                       </tbody>
