@@ -9,7 +9,7 @@
 
                 $post_id = $_GET['id'];
 
-                    $sql = "SELECT p.post_id, p.title, p.description, p.post_img,
+                    $sql = "SELECT p.post_id, p.title, p.description, p.post_img,p.author,
                     p.post_date, c.category_name, u.username, p.category
                     FROM post p
                     inner JOIN category c ON p.category = c.category_id
@@ -32,7 +32,7 @@
                                 </span>
                                 <span>
                                     <i class="fa fa-user" aria-hidden="true"></i>
-                                    <a href='author.php'><?php echo $row['username']; ?></a>
+                                    <a href='author.php?aid=<?php echo $row['author']; ?>'><?php echo $row['username']; ?></a>
                                 </span>
                                 <span>
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
