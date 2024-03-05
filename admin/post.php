@@ -42,20 +42,19 @@
                              }
                               elseif( $_SESSION['user_role'] != 1)
                                {
-                                "SELECT p.post_id, p.title, p.description,  p.category,
+                                $sql ="SELECT p.post_id, p.title, p.description,  p.category,
                                 p.post_date, c.category_name, u.username
                                 FROM post p
                                 inner JOIN category c ON p.category = c.category_id
                                 inner JOIN user u ON p.author = u.user_id
-                                WHERE post.author = {$_SESSION['user_id']}
-                                ORDER BY post.post_id DESC";
+                                WHERE p.author = {$_SESSION['user_id']}
+                                ORDER BY p.post_id DESC";
 
                              }
 
                             
- 
-                            $result = mysqli_query($conn,$sql) or die("Query Failed");
-                    
+                        $result = mysqli_query($conn,$sql) or die("Query Failed");
+                                             
                             if(mysqli_num_rows($result) > 0){
                                 while( $row = mysqli_fetch_assoc($result)){
                       ?>
@@ -98,6 +97,7 @@
                             
                             echo '</ul>';
                         }
+                  
                     ?>
 
               </div>
