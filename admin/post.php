@@ -71,6 +71,8 @@
                       </tbody>
                   </table>
                   <?php
+
+                  // Code For Pagination
                         $sql1 = 'SELECT * FROM post';
                         $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
                         
