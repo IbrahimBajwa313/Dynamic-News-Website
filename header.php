@@ -30,16 +30,39 @@
 </div>
 <!-- /HEADER -->
 <!-- Menu Bar -->
+
+
+<?php
+    include "config.php";
+    if(isset($_GET['cid'])){
+        $cid = $_GET['cid'];
+    }   
+    $active = "";
+
+    $sql = "SELECT * FROM category where post > 0";
+    $result = mysqli_query($conn, $sql) or die("Category Query Failed");
+?>
+
 <div id="menu-bar">
-    <div class="container">
+    <div class="container">`
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
-                    <li><a href='category.php'>Business</a></li>
-                    <li><a href='category.php'>Entertainment</a></li>
-                    <li><a href='category.php'>Sports</a></li>
-                    <li><a href='category.php'>Politics</a></li>
+
+                    <?php  while($row = mysqli_fetch_assoc($result)){ 
+                        if(isset($_GET['cid'])){
+                            if($cid == $row['category_id']){
+                                $active = "active" ;
+                            } else {
+                                $active = "";
+                            }
+                        }
+                        
+
+                        echo "<li><a class = '{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li> ";
+                    } ?>
                 </ul>
+
             </div>
         </div>
     </div>
