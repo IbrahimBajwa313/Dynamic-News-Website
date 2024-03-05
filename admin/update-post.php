@@ -70,7 +70,7 @@
                 <label style=margin-top:8px for="">Change image</label><br>
                 <input style=margin-top:8px type="file" name="new_image">
                 <!-- <label for="">Previous image</label> -->
-                <input type="hidden" name="old_image" value="">
+                <input type="hidden" name="old_image" value="<?php echo $row['post_img']; ?>">
             </div>
             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
         </form>
