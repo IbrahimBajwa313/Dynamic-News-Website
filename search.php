@@ -6,7 +6,7 @@
                 <!-- post-container -->
                 <?php  
                 if(isset($_GET['search'])){
-                    $search = $_GET['search'];
+                    $search = mysqli_real_escape_string($conn,$_GET['search']);
                 }
                     include "config.php"; 
                 ?>
