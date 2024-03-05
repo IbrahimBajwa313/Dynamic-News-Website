@@ -24,9 +24,7 @@
             
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_assoc($result)){
-            ?>
-            <!-- Post Container -->
-            <div class="post-container">
+            ?> <div class="post-container">
                 <!-- Post Content -->
                 <div class="post-content">
                     <div class="row">
@@ -41,7 +39,7 @@
                                 <div class="post-information">
                                     <span>
                                         <i class="fa fa-tags" aria-hidden="true"></i>
-                                        <a href='category.php'><?php echo $row['category']; ?></a>
+                                        <a href='category.php?cid=<?php echo $row['category']; ?>'><?php echo $row['category_name']; ?></a>
                                     </span>
                                     <span>
                                         <i class="fa fa-user" aria-hidden="true"></i>
@@ -66,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /Post Container -->
+            
             <?php
                 }
             } else {

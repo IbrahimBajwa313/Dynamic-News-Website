@@ -48,6 +48,8 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class='menu'>
+                 <li><a href=' <?php echo $hostname ; ?>'>Home</a></li> 
+
 
                     <?php  while($row = mysqli_fetch_assoc($result)){ 
                         if(isset($_GET['cid'])){
@@ -56,9 +58,7 @@
                             } else {
                                 $active = "";
                             }
-                        }
-                        
-
+                        }                     
                         echo "<li><a class = '{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li> ";
                     } ?>
                 </ul>
