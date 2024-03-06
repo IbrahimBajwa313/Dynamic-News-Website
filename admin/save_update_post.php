@@ -38,10 +38,12 @@ if(empty($_FILES['new_image']['name'])){
 $sql = "UPDATE post SET title='{$_POST['post_title']}', description='{$_POST['postdesc']}', category={$_POST['category']}, post_img='{$file_name}'
         WHERE post_id={$_POST['post_id']}";
 
-$result = mysqli_query($conn,$sql) or die("Query Failed");
-if($result){
+$result = mysqli_query($conn, $sql);
+
+if ($result !== false && mysqli_affected_rows($conn) > 0) {
     header("location: {$hostname}/admin/post.php");
 } else {
     echo "Query Failed";
 }
+
 ?>

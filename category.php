@@ -72,9 +72,10 @@
                                 <p class="description">
                                     <?php 
                                     $description = $row['description'];
-                                    $lines = explode('.', $description);
-                                    $trimmedDescription = implode('.', array_slice($lines, 0, 4));
+                                    $words = str_word_count($description, 1); // Split the description into an array of words
+                                    $trimmedDescription = implode(' ', array_slice($words, 0, 80)); // Join the first 150 words together
                                     echo $trimmedDescription . "...";
+                                    
                                     ?>                                 
                                 </p>
                                 <a class='read-more pull-right' href='single.php?id=<?php echo $row['post_id']; ?>'>Read more</a>
