@@ -88,33 +88,33 @@
                 echo "<h>No Records Found</h>";
             }
 
-            // Code For Pagination
-            $sql1 = "SELECT * FROM post WHERE LOWER(post.title) LIKE LOWER('%{$search}%')";
+            // // Code For Pagination
+            // $sql1 = "SELECT * FROM post WHERE LOWER(post.title) LIKE LOWER('%{$search}%')";
 
-            $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
-            if(mysqli_num_rows($result1) > 0) {
-                $total_Posts = mysqli_num_rows($result1);
-                $total_Page = ceil($total_Posts / $limit);
-                echo '<ul class="pagination admin-pagination">';
-                if ($page > 1) {
-                    echo "<li><a href='author.php?search={$search}&page=".($page - 1)."'>Prev</a></li>";
-                }
-                for ($i = 1; $i <= $total_Page; $i++) {
-                    if ($i == $page) {
-                        $active = "active";
-                    } else {
-                        $active = "";
-                    }
-                    echo "<li class='{$active}'><a href='author.php?search={$search}&page={$i}'>{$i}</a></li>";
-                }
-                if ($page < $total_Page) {
-                    echo "<li><a href='author.php?search={$search}&page=".($page + 1)."'>Next</a></li>";
-                }
+            // $result1 = mysqli_query($conn, $sql1) or die("Query Failed");
+            // if(mysqli_num_rows($result1) > 0) {
+            //     $total_Posts = mysqli_num_rows($result1);
+            //     $total_Page = ceil($total_Posts / $limit);
+            //     echo '<ul class="pagination admin-pagination">';
+            //     if ($page > 1) {
+            //         echo "<li><a href='author.php?search={$search}&page=".($page - 1)."'>Prev</a></li>";
+            //     }
+            //     for ($i = 1; $i <= $total_Page; $i++) {
+            //         if ($i == $page) {
+            //             $active = "active";
+            //         } else {
+            //             $active = "";
+            //         }
+            //         echo "<li class='{$active}'><a href='author.php?search={$search}&page={$i}'>{$i}</a></li>";
+            //     }
+            //     if ($page < $total_Page) {
+            //         echo "<li><a href='author.php?search={$search}&page=".($page + 1)."'>Next</a></li>";
+            //     }
                 
-                echo '</ul>';
-            } else {
-                echo "<h>No Records Found</h>";
-            }
+            //     echo '</ul>';
+            // } else {
+            //     echo "<h>No Recjjjords Found</h>";
+            // }
             ?> 
                 </div><!-- /post-container -->
             </div>

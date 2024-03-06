@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+    // echo "<pre>";
+    // print_r($_SERVER);
+    // echo "</pre>";
+
+    include 'config.php';
+    $page = basename($_SERVER['PHP_SELF']);
+
+    switch ($page) {
+        case "single.php":
+            if(isset($_GET['id'])){
+                $sql_title = "SELECT * FROM post WHERE post_id= {$_GET['id']} "; 
+                $result_title = mysqli_query($conn,$sql_title) or die("Title Query Failed") ;
+                $row_title = mysqli_fetch_assoc($result_title);
+                $title = $row_title['title'];
+            } else {
+                $title ="No Post Found";
+            }
+            break;
+            
+        case "category.php":
+            if(isset($_GET['cid'])){
+                $sql_title = "SELECT * FROM category WHERE category_id={$_GET['cid']} "; 
+                $result_title = mysqli_query($conn,$sql_title) or die("Title Query Failed") ;
+                $row_title = mysqli_fetch_assoc($result_title);
+                $title = $row_title['category_name'] . " News";
+            } else {
+                $title ="No category Found";
+            }
+            break;
+        case "author.php":
+            if(isset($_GET['aid'])){
+                $sql_title = "SELECT * FROM user WHERE user_id={$_GET['aid']} "; 
+                $result_title = mysqli_query($conn,$sql_title) or die("Title Query Failed") ;
+                $row_title = mysqli_fetch_assoc($result_title);
+                $title = "News By " . $row_title['username'];
+            } else {
+                $title ="No Author Found";
+            }
+            break;
+        case "search.php":
+            if(isset($_GET['search'])){
+                $title = $_GET['search'];
+            } else {
+                $title ="No Search Results Found";
+            }
+            break;
+
+        default :
+        $title = " News Site";
+
+    }
+
+
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>News</title>
+    <title><?php  echo $title  ?></title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Font Awesome Icon -->

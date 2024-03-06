@@ -34,9 +34,16 @@ if(empty($_FILES['new_image']['name'])){
     }  
 }
 
+// Escape string values for security
+$post_title = mysqli_real_escape_string($conn, $_POST['post_title']);
+$postdesc = mysqli_real_escape_string($conn, $_POST['postdesc']);
+$category = mysqli_real_escape_string($conn, $_POST['category']);
+$file_name = mysqli_real_escape_string($conn, $file_name);
+$post_id = mysqli_real_escape_string($conn, $_POST['post_id']);
+
 // Query to Update the records in the database table post
-$sql = "UPDATE post SET title='{$_POST['post_title']}', description='{$_POST['postdesc']}', category={$_POST['category']}, post_img='{$file_name}'
-        WHERE post_id={$_POST['post_id']}";
+$sql = "UPDATE post SET title='{$post_title}', description='{$postdesc}', category={$category}, post_img='{$file_name}'
+        WHERE post_id={$post_id}";
 
 $result = mysqli_query($conn, $sql);
 
@@ -45,5 +52,7 @@ if ($result !== false && mysqli_affected_rows($conn) > 0) {
 } else {
     echo "Query Failed";
 }
+
+
 
 ?>
