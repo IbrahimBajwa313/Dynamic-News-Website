@@ -18,18 +18,18 @@
             while($row = mysqli_fetch_assoc($result)){
         ?>
         <!-- Form for show edit-->
-        <form action="save_update_post.php" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form action="save-settings.php" method="POST" enctype="multipart/form-data" autocomplete="off">
              
             <!-- Website Name -->
             <div class="form-group">
                 <label for="exampleInputTile">Website Name</label>
-                <input type="text" name="post_title" class="form-control" id="exampleInputUsername" value="<?php echo $row['websitename']; ?>">
+                <input type="text" name="websitename" class="form-control" id="exampleInputUsername" value="<?php echo $row['websitename']; ?>">
             </div>
              
             <!-- Footer Description -->
             <div class="form-group">
                 <label for="exampleInputCategory">Footer Description</label>
-                <input type="text" name="post_title" class="form-control" id="exampleInputUsername" value="<?php echo $row['footerdesc']; ?>">
+                <input type="text" name="footerdesc" class="form-control" id="exampleInputUsername" value="<?php echo $row['footerdesc']; ?>">
 
             </div>
 
