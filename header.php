@@ -6,6 +6,7 @@
     // print_r($_SERVER);
     // echo "</pre>";
 
+    // Code for Dynamic Title
     include 'config.php';
     $page = basename($_SERVER['PHP_SELF']);
 
@@ -77,8 +78,13 @@
         <!-- row -->
         <div class="row">
             <!-- LOGO -->
+            <?php   
+                 $sql_logo = "SELECT logo FROM settings";
+                 $result_logo = mysqli_query($conn,$sql_logo) or die("Logo Query Failed");
+                 $row_logo = mysqli_fetch_assoc($result_logo);
+            ?>
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="images/news.jpg"></a>
+                <a href="index.php" id="logo"><img src="images/<?php echo $row['logo'] ; ?>"></a>
             </div>
             <!-- /LOGO -->
         </div>

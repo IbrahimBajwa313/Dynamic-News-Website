@@ -43,7 +43,7 @@ $sql = "UPDATE settings SET websitename='{$websitename}', footerdesc='{$footerde
 
 $result = mysqli_query($conn, $sql);
 
-if ($result !== false && mysqli_affected_rows($conn) > 0) {
+if ($result !== false ) {
     header("location: {$hostname}/admin/post.php");
 } else {
     echo "Query Failed";

@@ -47,7 +47,7 @@ $sql = "UPDATE post SET title='{$post_title}', description='{$postdesc}', catego
 
 $result = mysqli_query($conn, $sql);
 
-if ($result !== false && mysqli_affected_rows($conn) > 0) {
+if ($result !== false ) {
     header("location: {$hostname}/admin/post.php");
 } else {
     echo "Query Failed";
