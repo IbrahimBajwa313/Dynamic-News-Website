@@ -29,7 +29,8 @@
             <!-- Footer Description -->
             <div class="form-group">
                 <label for="exampleInputCategory">Footer Description</label>
-                <input type="text" name="footerdesc" class="form-control" id="exampleInputUsername" value="<?php echo $row['footerdesc']; ?>">
+                <!-- <textarea  name="footerdesc" class="form-control" id="exampleInputUsername" value="<?php echo $row['footerdesc']; ?>"></textarea> -->
+                <textarea name="footerdesc" class="form-control" id="exampleInputUsername"><?php echo $row['footerdesc']; ?></textarea>
 
             </div>
 
