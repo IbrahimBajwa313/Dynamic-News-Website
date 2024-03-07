@@ -5,10 +5,10 @@
             <div class="col-md-8">
                 <!-- post-container -->
                 <?php  
+                    include "config.php"; 
                 if(isset($_GET['cid'])){
                     $cid = $_GET['cid'];
                 }
-                    include "config.php"; 
                     $sql2="Select category_name FROM category where category_id={$cid}";
                     $result2= mysqli_query($conn, $sql2);
                     $row2= mysqli_fetch_assoc($result2);

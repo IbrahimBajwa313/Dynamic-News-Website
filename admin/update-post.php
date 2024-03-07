@@ -42,8 +42,7 @@
             <div class="form-group">
                 <label for="exampleInputCategory">Category</label>
                 <select class="form-control" name="category">
-                <?php
-                                include 'config.php';
+                <?php 
                                                                
                                 $sql1 = "SELECT * FROM category";
                                 $result1 = mysqli_query($conn , $sql1) or die("Query Failed");
