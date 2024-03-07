@@ -38,7 +38,7 @@
                                 FROM post p
                                 inner JOIN category c ON p.category = c.category_id
                                 inner JOIN user u ON p.author = u.user_id
-                                ORDER BY p.post_id DESC  ";                           
+                                ORDER BY p.post_id DESC LIMIT {$offset},{$limit} ";                           
                              }
                               elseif( $_SESSION['user_role'] != 1)
                                {
@@ -48,7 +48,7 @@
                                 inner JOIN category c ON p.category = c.category_id
                                 inner JOIN user u ON p.author = u.user_id
                                 WHERE p.author = {$_SESSION['user_id']}
-                                ORDER BY p.post_id DESC";
+                                ORDER BY p.post_id DESC LIMIT {$offset},{$limit}";
 
                              }
 
