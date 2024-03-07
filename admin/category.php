@@ -55,7 +55,13 @@
                             <td><?php echo $row['category_name']; ?></td>
                             <td><?php echo $row['post']; ?></td>
                             <td class='edit'><a href='update-category.php?cid=<?php echo $row['category_id'] ?>'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php?cid=<?php echo $row['category_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
+                            <td class='delete'>
+                                <?php if($row['post'] > 0): ?>
+                                    <a href='#' onclick="alert('This category cannot be deleted as it has associated posts.')"><i class='fa fa-trash-o'></i></a>
+                                <?php else: ?>
+                                    <a href='delete-category.php?cid=<?php echo $row['category_id']; ?>' ><i class='fa fa-trash-o'></i></a>
+                                <?php endif; ?>
+                            </td>        
                         </tr>
                         <?php }} ?>
                     </tbody>

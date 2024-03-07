@@ -2,7 +2,7 @@
 include 'header.php';
 include 'config.php';
 if( $_SESSION['user_role'] != 1){
-    header("location: http://localhost/news-website/admin/post.php");
+    header("location: {$hostname}/admin/post.php");
 }
 if(isset($_POST["confirm_delete"])){
 

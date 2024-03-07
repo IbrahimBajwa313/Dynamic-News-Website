@@ -27,7 +27,7 @@
                             if(isset($_GET['page'])){
                                 $page = $_GET['page'];
                             } else {
-                                $page = 2 ;
+                                $page = 1 ;
                             }
                             $offset = ($page-1)*$limit; //LIMIT {$offset},{$limit}
 
