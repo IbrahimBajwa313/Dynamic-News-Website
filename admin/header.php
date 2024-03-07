@@ -31,10 +31,17 @@ if (!isset($_SESSION['username'])){
                 <!-- row -->
                 <div class="row">
                     <!-- LOGO -->
+                    <?php   
+                        $sql_logo = "SELECT logo FROM settings";
+                        $result_logo = mysqli_query($conn,$sql_logo) or die("Logo Query Failed");
+                        $row_logo = mysqli_fetch_assoc($result_logo);
+                    ?>
                     <div class="col-md-2">
-                        <a href="post.php"><img class="logo" src="images/news.jpg"></a>
+                        <a href="post.php"><img class="logo" src="images/<?php echo $row_logo['logo'] ; ?>"></a>
                     </div>
                     <!-- /LOGO -->
+
+                     
                       <!-- LOGO-Out -->
                     <div class="col-md-offset-9  col-md-3">
                         <a class="admin-logout" style="margin-right: 7px;">Hi <?php echo $_SESSION['username'] ; ?><br></a>

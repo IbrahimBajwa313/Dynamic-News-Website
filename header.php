@@ -84,7 +84,7 @@
                  $row_logo = mysqli_fetch_assoc($result_logo);
             ?>
             <div class=" col-md-offset-4 col-md-4">
-                <a href="index.php" id="logo"><img src="images/<?php echo $row['logo'] ; ?>"></a>
+                <a href="index.php" id="logo"><img src="admin/images/<?php echo $row_logo['logo'] ; ?>"></a>
             </div>
             <!-- /LOGO -->
         </div>
