@@ -24,7 +24,7 @@
                             if(isset($_GET['page'])){
                                 $page = $_GET['page'];
                             } else {
-                                $page = 2 ;
+                                $page = 1 ;
                             }
                             $offset = ($page-1)*$limit; //LIMIT {$offset},{$limit}
 
@@ -54,8 +54,8 @@
                             <td class='id'><?php echo $row['category_id']; ?></td>
                             <td><?php echo $row['category_name']; ?></td>
                             <td><?php echo $row['post']; ?></td>
-                            <td class='edit'><a href='update-category.php'><i class='fa fa-edit'></i></a></td>
-                            <td class='delete'><a href='delete-category.php'><i class='fa fa-trash-o'></i></a></td>
+                            <td class='edit'><a href='update-category.php?cid=<?php echo $row['category_id'] ?>'><i class='fa fa-edit'></i></a></td>
+                            <td class='delete'><a href='delete-category.php?cid=<?php echo $row['category_id'] ?>'><i class='fa fa-trash-o'></i></a></td>
                         </tr>
                         <?php }} ?>
                     </tbody>
